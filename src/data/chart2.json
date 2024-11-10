@@ -1,0 +1,22 @@
+[
+    { "result": "Beggar/Drifter" },
+    { "result": "Criminal" },
+    { "result": "Peasant/Farm worker" },
+    { "result": "Farmer/Fisherman" },
+    { "result": "Miner/Forester" },
+    { "result": "Sailor" },
+    { "result": "Solder/Mercenary" },
+    { "result": "Craftsman/Skilled worker", "subchart": "chart2A" },
+    { "result": "Craftsman/Skilled worker", "subchart": "chart2A" },
+    { "result": "Sage/Scholar/Alchemsit" },
+    { "result": "Scribe" },
+    { "result": "Slaver" },
+    { "result": "Adventurer" },
+    { "result": "Actor/Bard/Courtesan" },
+    { "result": "Government Official", "subchart": "chart2B" },
+    { "result": "Merchant", "subchart": "chart2C" },
+    { "result": "Merchant", "subchart": "chart2C" },
+    { "result": "Clergy", "subchart": "chart2D" },
+    { "result": "Gentleman" },
+    { "result": "Noble", "subchart": "chart2E" }
+]

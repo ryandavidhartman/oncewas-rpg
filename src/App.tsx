@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
-import AbilityScoreGenerator from './components/AbilityScoreGenerator';
-import { Character, AbilityScores } from './models';
+import { CharacterProvider } from './context/CharacterContext';
+import RollAbilityScores from './components/RollAbilityScores';
+import RollBackground from './components/RollBackground';
+import CharacterSheet from './components/CharacterSheet';
 
 const App: React.FC = () => {
-  const [character, setCharacter] = useState<Character>({
-    abilityScores: { strength: 0, intelligence: 0, wisdom: 0, dexterity: 0, constitution: 0, charisma: 0 },
-    background: "",
-    class: "",
-    race: "",
-    equipment: [],
-    wealth: 0,
-    hitPoints: 0,
-  });
+  const [step, setStep] = useState(0);
 
-  const handleScoresGenerated = (scores: AbilityScores) => {
-    setCharacter((prev) => ({ ...prev, abilityScores: scores }));
-  };
+  const nextStep = () => setStep(step + 1);
 
   return (
-    <div>
-      <h1>Quick Character Generator</h1>
-      <AbilityScoreGenerator onGenerate={handleScoresGenerated} />
-      {character && <pre>{JSON.stringify(character, null, 2)}</pre>}
-    </div>
+    <CharacterProvider>
+      <div className="App">
+        {step === 0 && <RollAbilityScores onNext={nextStep} />}
+        {step === 1 && <RollBackground onNext={nextStep} />}
+        {/* Add other steps here as components */}
+        {step === 5 && <CharacterSheet />}
+      </div>
+    </CharacterProvider>
   );
 };
 

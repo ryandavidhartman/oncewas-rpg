@@ -1,3 +1,22 @@
 [
-    { "strength": 13, "intelligence": 9, "wisdom": 15, "dexterity": 10, "constitution": 11, "charisma": 11 }
+    { "strength": 13, "intelligence":  9, "wisdom": 15, "dexterity": 10, "constitution": 11, "charisma": 11 },
+    { "strength": 11, "intelligence":  7, "wisdom": 18, "dexterity":  9, "constitution": 10, "charisma": 14 },
+    { "strength": 10, "intelligence": 15, "wisdom": 15, "dexterity": 10, "constitution":  9, "charisma": 10 },
+    { "strength":  9, "intelligence": 13, "wisdom": 13, "dexterity":  6, "constitution": 15, "charisma": 13 },
+    { "strength": 16, "intelligence":  9, "wisdom":  7, "dexterity": 10, "constitution": 13, "charisma": 14 },
+    { "strength": 15, "intelligence": 12, "wisdom": 12, "dexterity": 10, "constitution": 14, "charisma":  6 },
+    { "strength": 16, "intelligence": 10, "wisdom":  9, "dexterity": 11, "constitution":  9, "charisma": 14 },
+    { "strength": 14, "intelligence":  9, "wisdom": 10, "dexterity": 13, "constitution":  9, "charisma": 14 },
+    { "strength":  8, "intelligence": 18, "wisdom":  9, "dexterity": 12, "constitution": 11, "charisma": 11 },
+    { "strength":  7, "intelligence": 14, "wisdom": 16, "dexterity":  9, "constitution":  9, "charisma": 14 },
+    { "strength":  9, "intelligence": 16, "wisdom": 11, "dexterity": 10, "constitution": 10, "charisma": 13 },
+    { "strength": 10, "intelligence": 14, "wisdom":  9, "dexterity":  9, "constitution": 13, "charisma": 14 },
+    { "strength": 12, "intelligence": 11, "wisdom": 10, "dexterity": 16, "constitution": 11, "charisma":  9 },
+    { "strength": 13, "intelligence":  7, "wisdom": 10, "dexterity": 13, "constitution": 14, "charisma": 12 },
+    { "strength":  9, "intelligence": 10, "wisdom":  9, "dexterity": 13, "constitution": 13, "charisma": 15 },
+    { "strength":  9, "intelligence": 10, "wisdom": 11, "dexterity": 15, "constitution": 13, "charisma": 11 },
+    { "strength": 12, "intelligence": 13, "wisdom":  9, "dexterity": 10, "constitution": 14, "charisma": 11 },
+    { "strength": 16, "intelligence": 14, "wisdom":  6, "dexterity":  9, "constitution": 10, "charisma": 14 },
+    { "strength":  9, "intelligence": 15, "wisdom": 10, "dexterity": 15, "constitution": 10, "charisma": 10 },
+    { "strength": 10, "intelligence": 16, "wisdom":  8, "dexterity": 14, "constitution": 11, "charisma": 10 }
 ]
