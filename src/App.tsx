@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import { CharacterProvider } from './context/CharacterContext';
-import RollAbilityScores from './components/RollAbilityScores';
-import RollBackground from './components/RollBackground';
-import CharacterSheet from './components/CharacterSheet';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Footer/Footer';
+import Footer from './components/Header/Header';
+import Home from './pages/Home';
+import Characters from './pages/Characters';
+import About from './pages/About';
+import AddCharacter from "./pages/AddCharacter";
 
 const App: React.FC = () => {
-  const [step, setStep] = useState(0);
-
-  const nextStep = () => setStep(step + 1);
-
   return (
-    <CharacterProvider>
-      <div className="App">
-        {step === 0 && <RollAbilityScores onNext={nextStep} />}
-        {step === 1 && <RollBackground onNext={nextStep} />}
-        {/* Add other steps here as components */}
-        {step === 5 && <CharacterSheet />}
-      </div>
-    </CharacterProvider>
+    <Router>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/characters" element={<Characters />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/add-character" element={<AddCharacter />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
   );
 };
 
