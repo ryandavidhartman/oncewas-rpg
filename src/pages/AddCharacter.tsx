@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/index.css";
 import { AbilityName } from "../models/iabilitities.interface";
 import { ClassName } from "../models/classname.enum";
 import { IRace } from "../models/irace.interface";
@@ -119,86 +120,93 @@ const AddCharacterPage: React.FC = () => {
   };
 
   return (
-    <div className="add-character-page">
-      <h1>Add New Character</h1>
+<div className="add-character-page">
+  <h1>Add New Character</h1>
 
-      <div className="form-group">
-        <label>Name:</label>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="name">Name:</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        value={character.name}
+        onChange={handleInputChange}
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="race">Race:</label>
+      <select
+        id="race"
+        name="race"
+        value={character.race.raceName || ""}
+        onChange={handleSelectChange}
+      >
+        <option value="">Select Race</option>
+        {races.map((race) => (
+          <option key={race} value={race}>
+            {race}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="gender">Gender:</label>
+      <select
+        id="gender"
+        name="gender"
+        value={character.gender}
+        onChange={handleSelectChange}
+      >
+        <option value="">Select Gender</option>
+        {genders.map((gender) => (
+          <option key={gender} value={gender}>
+            {gender}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="className">Class:</label>
+      <select
+        id="className"
+        name="className"
+        value={character.className.className || ""}
+        onChange={handleSelectChange}
+      >
+        <option value="">Select Class</option>
+        {classes.map((className) => (
+          <option key={className} value={className}>
+            {className}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div className="attributes" style={{ width: "25%" }}>
+    <h2>Attributes</h2>
+    {Object.keys(character.attributes).map((attr) => (
+      <div key={attr} className="form-group">
+        <label>{attr}:</label>
         <input
-          type="text"
-          name="name"
-          value={character.name}
-          onChange={handleInputChange}
+          type="number"
+          value={character.attributes[attr as AbilityName]}
+          onChange={(e) => handleAttributeChange(e, attr as AbilityName)}
         />
       </div>
+    ))}
+  </div>
 
-      <div className="form-group">
-        <label>Race:</label>
-        <select
-          name="race"
-          value={character.race.raceName || ""}
-          onChange={handleSelectChange}
-        >
-          <option value="">Select Race</option>
-          {races.map((race) => (
-            <option key={race} value={race}>
-              {race}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="form-group">
-        <label>Gender:</label>
-        <select
-          name="gender"
-          value={character.gender}
-          onChange={handleSelectChange}
-        >
-          <option value="">Select Gender</option>
-          {genders.map((gender) => (
-            <option key={gender} value={gender}>
-              {gender}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="form-group">
-        <label>Class:</label>
-        <select
-          name="className"
-          value={character.className.className || ""}
-          onChange={handleSelectChange}
-        >
-          <option value="">Select Class</option>
-          {classes.map((className) => (
-            <option key={className} value={className}>
-              {className}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="attributes">
-        <h2>Attributes</h2>
-        {Object.keys(character.attributes).map((attr) => (
-          <div key={attr} className="form-group">
-            <label>{attr}:</label>
-            <input
-              type="number"
-              value={character.attributes[attr as AbilityName]}
-              onChange={(e) =>
-                handleAttributeChange(e, attr as AbilityName)
-              }
-            />
-          </div>
-        ))}
-      </div>
-
-      <button onClick={handleSubmit}>Create Character</button>
-    </div>
-  );
+  <button onClick={handleSubmit} style={{ display: "block", margin: "1rem auto" }}>
+        Create Character
+  </button>
+</div>
+    
+ );
 };
 
 export default AddCharacterPage;
