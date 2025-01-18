@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { AbilityName } from "../models/iabilitities.interface";
 import { ClassName } from "../models/classname.enum";
+import { IRace } from "../models/irace.interface";
+import { RaceName } from "../models/racename.enum";
+import { Dwarf } from "../models/dwarf.model";
+import { Elf } from "../models/elf.model";
+import { Halfling } from "../models/halfling.model";
+import { Human } from "../models/human.model";
 
 type CharacterAttributes = Record<AbilityName, number>;
 
 interface CharacterData {
   name: string;
-  race: string;
+  race: IRace;
   gender: string;
   className: string;
   attributes: CharacterAttributes;
@@ -15,7 +21,7 @@ interface CharacterData {
 const AddCharacterPage: React.FC = () => {
   const [character, setCharacter] = useState<CharacterData>({
     name: "",
-    race: "",
+    race: {} as IRace,
     gender: "",
     className: "",
     attributes: {
@@ -28,9 +34,24 @@ const AddCharacterPage: React.FC = () => {
     },
   });
 
-  const races = ["Human", "Elf", "Dwarf", "Halfling", "Orc", "Tiefling"];
   const genders = ["Male", "Female", "Non-binary"];
   const classes = Object.values(ClassName);
+  const races = Object.values(RaceName);
+  
+  const createRace = (raceName: RaceName): IRace => {
+    switch (raceName) {
+      case RaceName.DWARF:
+        return Dwarf.getInstance();;
+      case RaceName.ELF:
+        return Elf.getInstance();;
+      case RaceName.HALFLING:
+        return Halfling.getInstance();
+      case RaceName.HUMAN:
+        return Human.getInstance();
+      default:
+        throw new Error("Invalid race selected");
+    }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -39,7 +60,13 @@ const AddCharacterPage: React.FC = () => {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setCharacter({ ...character, [name]: value });
+
+    if (name === "race") {
+      const selectedRace = createRace(value as RaceName);
+      setCharacter({ ...character, race: selectedRace });
+    } else {
+      setCharacter({ ...character, [name]: value });
+    }
   };
 
   const handleAttributeChange = (
@@ -80,7 +107,7 @@ const AddCharacterPage: React.FC = () => {
         <label>Race:</label>
         <select
           name="race"
-          value={character.race}
+          value={character.race.raceName || ""}
           onChange={handleSelectChange}
         >
           <option value="">Select Race</option>
