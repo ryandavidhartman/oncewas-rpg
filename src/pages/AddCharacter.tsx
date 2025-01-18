@@ -7,6 +7,13 @@ import { Dwarf } from "../models/dwarf.model";
 import { Elf } from "../models/elf.model";
 import { Halfling } from "../models/halfling.model";
 import { Human } from "../models/human.model";
+import IClass from "../models/iclass.interface";
+import { Cleric } from "../models/cleric.model";
+import { Fighter } from "../models/fighter.model";
+import { MagicUser } from "../models/magic-user.model";
+import { MagicUserFighter } from "../models/magic-user-fighter.model";
+import { MagicUserThief } from "../models/magic-user-thief.model";
+import { Thief } from "../models/thief.model";
 
 type CharacterAttributes = Record<AbilityName, number>;
 
@@ -14,7 +21,7 @@ interface CharacterData {
   name: string;
   race: IRace;
   gender: string;
-  className: string;
+  className: IClass;
   attributes: CharacterAttributes;
 }
 
@@ -23,7 +30,7 @@ const AddCharacterPage: React.FC = () => {
     name: "",
     race: {} as IRace,
     gender: "",
-    className: "",
+    className: {} as IClass,
     attributes: {
       Strength: 10,
       Dexterity: 10,
@@ -53,6 +60,25 @@ const AddCharacterPage: React.FC = () => {
     }
   };
 
+  const createClass = (className: ClassName): IClass => {
+    switch (className) {
+      case ClassName.CLERIC:
+        return Cleric.getInstance();
+      case ClassName.FIGHTER:
+        return Fighter.getInstance();
+      case ClassName.MAGICUSER:
+        return MagicUser.getInstance();
+      case ClassName.MAGICUSERFIGHTER:
+        return MagicUserFighter.getInstance();
+      case ClassName.MAGICUSERTHIEF:
+        return MagicUserThief.getInstance();
+      case ClassName.THIEF:
+        return Thief.getInstance();
+      default:
+        throw new Error("Invalid class selected");
+    }
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCharacter({ ...character, [name]: value });
@@ -64,6 +90,9 @@ const AddCharacterPage: React.FC = () => {
     if (name === "race") {
       const selectedRace = createRace(value as RaceName);
       setCharacter({ ...character, race: selectedRace });
+    } else if (name === "className") {
+      const selectedClass = createClass(value as ClassName);
+      setCharacter({ ...character, className: selectedClass });  
     } else {
       setCharacter({ ...character, [name]: value });
     }
@@ -139,7 +168,7 @@ const AddCharacterPage: React.FC = () => {
         <label>Class:</label>
         <select
           name="className"
-          value={character.className}
+          value={character.className.className || ""}
           onChange={handleSelectChange}
         >
           <option value="">Select Class</option>
